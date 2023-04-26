@@ -3,11 +3,10 @@
 {% block title %}
 {% endblock %}
 {% block content %}
-
-{% for post in posts %}
+<H1>Post with - "{{ tag.title|title }} tag."</H1>
+{% for post in tag.posts.all %}
 {% include 'blog/include/post_card_tamplate.html' %}
 {% endfor %}
-
 
 
 
