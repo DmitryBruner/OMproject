@@ -17,7 +17,8 @@ def tags_list(request):
     return render(request, 'blog/tags_list.html', context={'tags': tags})
 
 
-class PostDetail(ObjectDatailMixin, View): # порядок наследования важен! сначала ищется в первом классе и если не находит то во втором. для вывода иерархии обратиться к методу класса mro()
+class PostDetail(ObjectDatailMixin,
+                 View):  # порядок наследования важен! сначала ищется в первом классе и если не находит то во втором. для вывода иерархии обратиться к методу класса mro()
     model = Post
     template = 'blog/post_detail.html'
 
@@ -25,6 +26,7 @@ class PostDetail(ObjectDatailMixin, View): # порядок наследован
 class TagDetail(ObjectDatailMixin, View):
     model = Tag
     template = 'blog/list_posts_tag.html'
+
 
 class TagCreate(View):
     def get(self, request):
@@ -39,3 +41,18 @@ class TagCreate(View):
             return redirect(new_tag)
         else:
             return render(request, 'blog/tag_create.html', context={'form': bound_form})
+
+
+class PostCreate(View):
+    def get(self, request):
+        form = PostForm
+        return render(request, 'blog/post_create_form.html', context={'form': form})
+
+    def post(self, request):
+        bound_form = PostForm(request.POST)
+
+        if bound_form.is_valid():
+            new_post = bound_form.save()
+            return redirect(new_post)
+        else:
+            return render(request, 'blog/post_create.html', context={'form': bound_form})
