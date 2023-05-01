@@ -27,10 +27,17 @@ class PostCreate(ObjectCreateMixin, View):
     form_model = PostForm
     template = 'blog/post_create_form.html'
 
+
 class PostUpdate(ObjectUpdateMixin, View):
     model = Post
     form_model = PostForm
     template = 'blog/post_update_form.html'
+
+
+class PostDelete(ObjectDeleteMixin, View):
+    model = Post
+    template = 'blog/post_delete_form.html'
+    redirect_template = 'posts_list_url'
 
 
 class TagDetail(ObjectDatailMixin, View):
@@ -47,3 +54,17 @@ class TagUpdate(ObjectUpdateMixin, View):
     model = Tag
     form_model = TagForm
     template = 'blog/tag_update_form.html'
+
+
+class TagDelete(ObjectDeleteMixin, View):
+    model = Tag
+    template = 'blog/tag_delete_form.html'
+    redirect_template = 'tags_list_url'
+    # def get(self, request, slug):
+    #     obj = Tag.objects.get(slug__exact=slug)
+    #     return render(request, 'blog/tag_delete_form.html', context={'obj': obj})
+    #
+    # def post(self,request, slug):
+    #     obj = Tag.objects.get(slug__exact=slug)
+    #     obj.delete()
+    #     return redirect(reverse('tags_list_url'))

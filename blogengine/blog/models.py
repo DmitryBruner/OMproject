@@ -26,6 +26,9 @@ class Post(models.Model):
     def get_update_url(self):
         return reverse('post_update_url', kwargs={'slug': self.slug})
 
+    def get_delete_url(self):
+        return reverse('post_delete_url', kwargs={'slug': self.slug})
+
     def get_absolute_url(
             self):  # создает ссылку на объект тем самым упрощая доступ по соглашениям джанго в разных местах кода
         return reverse('post_detail_url', kwargs={'slug': self.slug})  # функция формирует ссылку на конкретный объект
@@ -43,6 +46,9 @@ class Tag(models.Model):
 
     def get_update_url(self):
         return reverse('tag_update_url', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('tag_delete_url', kwargs={'slug': self.slug})
 
     def get_absolute_url(self):
         return reverse('tag_detail_url', kwargs={'slug': self.slug})
