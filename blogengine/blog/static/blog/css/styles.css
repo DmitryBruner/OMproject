@@ -1,0 +1,20 @@
+.admin-panel {
+    border: 1px solid #999;
+    border-radius: 6px;
+    position: fixed;
+    right: 50px;
+    bottom: 30p;
+    opacity: 0.7;
+
+}
+
+.admin-panel a {
+    display: block;
+    margin: 5px;
+    padding: 10px;
+}
+
+a.edit, a.delete {
+    display: none;
+}
+

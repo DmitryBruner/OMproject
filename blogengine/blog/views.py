@@ -17,7 +17,7 @@ def tags_list(request):
     return render(request, 'blog/tags_list.html', context={'tags': tags})
 
 
-class PostDetail(ObjectDatailMixin,
+class PostDetail(ObjectDetailMixin,
                  View):  # порядок наследования важен! сначала ищется в первом классе и если не находит то во втором. для вывода иерархии обратиться к методу класса mro()
     model = Post
     template = 'blog/post_detail.html'
@@ -40,7 +40,7 @@ class PostDelete(ObjectDeleteMixin, View):
     redirect_template = 'posts_list_url'
 
 
-class TagDetail(ObjectDatailMixin, View):
+class TagDetail(ObjectDetailMixin, View):
     model = Tag
     template = 'blog/list_posts_tag.html'
 
